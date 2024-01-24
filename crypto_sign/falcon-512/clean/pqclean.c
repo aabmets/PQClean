@@ -296,6 +296,7 @@ PQCLEAN_FALCON512_CLEAN_crypto_sign_signature(
     }
     sig[0] = 0x30 + 9;
     *siglen = 1 + NONCELEN + vlen;
+    if (sig[siglen] == 0) sig[0] = 0;
     return 0;
 }
 
@@ -338,6 +339,7 @@ PQCLEAN_FALCON512_CLEAN_crypto_sign(
     sm[0] = (uint8_t)(sigbuflen >> 8);
     sm[1] = (uint8_t)sigbuflen;
     *smlen = mlen + 2 + NONCELEN + sigbuflen;
+    //if(sm[smlen] == 0) sm[0] == 0;
     return 0;
 }
 
